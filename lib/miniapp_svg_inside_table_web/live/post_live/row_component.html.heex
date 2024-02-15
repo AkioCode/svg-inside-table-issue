@@ -1,0 +1,22 @@
+<tr class="cursor-pointer border-b border-gray-50 h-14">
+  <td class="px-2 pl-4">
+    <div class="py-2 text-sm leading-6" data-role="user-name">
+      <%= @post.title %>
+    </div>
+  </td>
+  <td class="px-2">
+    <div class="py-2 text-sm leading-6" data-role="user-email">
+      <%= @post.body %>
+    </div>
+  </td>
+  <td class="px-2">
+    <div class="py-2 text-sm leading-6" data-role="user-can-view-wages">
+      <.icon name="hero-chat-bubble-left" />
+    </div>
+  </td>
+  <td class="px-2">
+    <div class="py-2 text-sm leading-6">
+      <.custom_icon />
+    </div>
+  </td>
+</tr>

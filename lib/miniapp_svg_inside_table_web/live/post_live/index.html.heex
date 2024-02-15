@@ -1,0 +1,46 @@
+<.header>
+  Listing Posts
+  <:actions>
+    <.link patch={~p"/posts/new"}>
+      <.button>Click Here</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="posts"
+  rows={[
+    {"posts-1", %Post{id: 1, title: "Post 1", body: "Body 1"}},
+    {"posts-2", %Post{id: 2, title: "Post 2", body: "Body 2"}}
+  ]}
+  row_click={fn {_id, post} -> JS.navigate(~p"/posts/#{post}") end}
+>
+  <:col :let={{_id, post}} label="Title"><%= post.title %></:col>
+  <:col :let={{_id, post}} label="Body"><%= post.body %></:col>
+  <:col :let={{_id, _post}} label="HeroIcon"><.icon name="hero-chat-bubble-left" /></:col>
+  <:col :let={{_id, _post}} label="CustomIcon"><.custom_icon /></:col>
+</.table>
+
+<table class="w-[40rem] mt-11 sm:w-full">
+  <thead class="text-sm text-left leading-6 text-zinc-500">
+    <tr>
+      <th class="p-0 pb-4 pr-6 font-normal">TITLE</th>
+      <th class="p-0 pb-4 pr-6 font-normal">BODY</th>
+      <th class="p-0 pb-4 pr-6 font-normal">HEROICON</th>
+      <th class="p-0 pb-4 pr-6 font-normal">CUSTOMICON</th>
+    </tr>
+  </thead>
+  <tbody id="users-table">
+    <.live_component
+      :for={
+        {id, post} <- [
+          {"posts-1", %Post{id: 1, title: "Post 1", body: "Body 1"}},
+          {"posts-2", %Post{id: 2, title: "Post 2", body: "Body 2"}}
+        ]
+      }
+      id={"row-#{id}"}
+      post={post}
+      module={MiniappSvgInsideTableWeb.PostLive.RowComponent}
+    />
+  </tbody>
+</table>
